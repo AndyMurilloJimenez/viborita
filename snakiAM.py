@@ -21,8 +21,8 @@ Exercises
 3. How would you move the food?
 4. Change the snake to respond to mouse clicks.
 """
-
-from random import randrange
+"""CAMBIOS GAEL WASO, AGREGAR FUNCION CHOICE"""
+from random import randrange,choice
 from turtle import *
 
 from freegames import square, vector
@@ -43,10 +43,25 @@ y la snake comienza en 10,0
 
 """
 
+"""CAMBIOS GAEL WASO, AGREGAR LISTA DE COLORES"""
+colors =['black','green','blue','yellow','purple']
+"""--------FIN CAMBIOS GAEL WASO----------"""
 
 food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
+
+
+
+
+"""CAMBIOS GAEL WASO, ELEGIR COLORES RANDOM"""
+snake_color = choice(colors)
+available_food_colors = [c for c in colors if c != snake_color]
+food_color = choice(available_food_colors)
+"""-----FIN CAMBIOS GAEL WASO------"""
+
+
+
 
 
 def change(x, y):
@@ -83,10 +98,16 @@ def move():
 
     clear()
 
-    for body in snake:
-        square(body.x, body.y, 9, 'black')
 
-    square(food.x, food.y, 9, 'green')
+#CAMBIOS GAEL WASO, AGREGAR COLOR RANDOM A VIBORA Y COMIDA
+
+    for body in snake:
+        square(body.x, body.y, 9, snake_color)
+
+    square(food.x, food.y, 9, food_color)
+
+
+
     update()
     ontimer(move, 100)
 
